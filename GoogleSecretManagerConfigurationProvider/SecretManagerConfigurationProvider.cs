@@ -15,6 +15,7 @@ namespace GoogleSecretManagerConfigurationProvider
         {
             var remoteConfigurationOptions = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false)
+                .AddEnvironmentVariables()
                 .Build();
 
             remoteConfigurationOptions.Bind("GoogleConfiguration", gc);
