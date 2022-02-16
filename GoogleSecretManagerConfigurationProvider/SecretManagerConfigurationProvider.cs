@@ -21,6 +21,9 @@ namespace GoogleSecretManagerConfigurationProvider
             remoteConfigurationOptions.Bind("GoogleConfiguration", gc);
 
             System.Console.WriteLine($"-->Starting {gc.JsonCredentialsPath}");
+
+            System.Console.WriteLine($"-->{(System.IO.File.ReadAllText(gc.JsonCredentialsPath))}");
+
             try {
                 Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", gc.JsonCredentialsPath);
                 _client = SecretManagerServiceClient.Create();
@@ -54,9 +57,10 @@ namespace GoogleSecretManagerConfigurationProvider
                 System.Console.WriteLine($"-->Out");
                 return; // skip for local debug
             }
-
-            var secrets = _client.ListSecrets(new ProjectName(_projectId));
-            foreach (var secret in secrets)
+                System.Console.WriteLine($"-->A");
+                var secrets = _client.ListSecrets(new ProjectName(_projectId));
+                System.Console.WriteLine($"-->{(secrets == null)}");
+                foreach (var secret in secrets)
             {
                 try
                 {

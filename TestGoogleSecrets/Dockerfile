@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:3.1.22-alpine3.14 AS base
 RUN apk update 
 RUN apk upgrade 
-RUN apk add libc6-compat
 RUN apk add gcompat
+
 WORKDIR /app
 EXPOSE 6000
 EXPOSE 6001
@@ -20,9 +20,9 @@ RUN dotnet publish "TestGoogleSecrets.csproj" -c Release -o /app/publish
 
 FROM base AS final
 
-RUN apk update 
-RUN apk upgrade 
-RUN apk add libc6-compat
+# RUN apk update 
+# RUN apk upgrade 
+# RUN apk add libc6-compat
 
 WORKDIR /app
 COPY --from=publish /app/publish .
