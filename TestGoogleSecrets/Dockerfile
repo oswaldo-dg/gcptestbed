@@ -1,5 +1,5 @@
 # FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-alpine3.8 AS BASE
- FROM mcr.microsoft.com/dotnet/aspnet:3.1.22-alpine3.14 AS base
+ FROM mcr.microsoft.com/dotnet/aspnet:3.1.9-alpine3.12 AS base
 
 # ENV ASPNETCORE_VERSION=3.1.0
 
@@ -18,7 +18,7 @@
 
 # RUN apk update --no-cache
 # RUn apk del libc6-compat
-RUN apk add --no-cache bash libc6-compat=1.1.19-r11
+# RUN apk add --no-cache bash libc6-compat=1.1.19-r11
 
 WORKDIR /app
 EXPOSE 6000
