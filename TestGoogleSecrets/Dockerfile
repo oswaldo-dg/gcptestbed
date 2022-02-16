@@ -1,5 +1,16 @@
-#FROM mcr.microsoft.com/dotnet/aspnet:3.1.22-alpine3.14 AS base
-FROM mcr.microsoft.com/dotnet/aspnet:3.1.22-buster-slim AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-alpine3.8 AS BASE
+
+ENV ASPNETCORE_VERSION=3.1.0
+
+RUN apk update 
+RUN apk add libc6-compat 
+RUN apk add bash 
+RUN rm -Rf /usr/share/dotnet 
+RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/3.1.0/aspnetcore-runtime-3.1.0-linux-musl-x64.tar.gz 
+RUN mkdir -p /usr/share/dotnet 
+RUN tar -zxf aspnetcore.tar.gz -C /usr/share/dotnet && rm aspnetcore.tar.gz 
+RUN ln -sf /usr/share/dotnet/dotnet /usr/bin/dotnet
+
 # RUN apk update 
 # RUN apk upgrade 
 # RUN apk add gcompat
@@ -20,11 +31,6 @@ FROM build AS publish
 RUN dotnet publish "TestGoogleSecrets.csproj" -c Release -o /app/publish
 
 FROM base AS final
-
-# RUN apk update 
-# RUN apk upgrade 
-# RUN apk add libc6-compat
-
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "TestGoogleSecrets.dll"]

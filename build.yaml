@@ -8,3 +8,4 @@ steps:
     args: ["push", "gcr.io/testbed-341420/testbed:$SHORT_SHA"]
   # [END Docker Image build]
 timeout: 1800s
+
