@@ -55,10 +55,10 @@ namespace GoogleSecretManagerConfigurationProvider
             System.Console.WriteLine($"-->{_projectId}");
             if(string.IsNullOrEmpty(_projectId))
             {
-                System.Console.WriteLine($"-->Out");
+                System.Console.WriteLine($"-->Outa");
                 return; // skip for local debug
             }
-                System.Console.WriteLine($"-->A");
+                System.Console.WriteLine($"-->B");
                 var secrets = _client.ListSecrets(new ProjectName(_projectId));
                 System.Console.WriteLine($"-->{(secrets == null)}");
                 System.Console.WriteLine($"-->{(secrets.ToList().Count())}");
