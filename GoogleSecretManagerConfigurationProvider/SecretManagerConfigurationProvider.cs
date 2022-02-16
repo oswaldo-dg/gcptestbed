@@ -3,6 +3,7 @@ using Google.Cloud.SecretManager.V1;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System;
+using System.Linq;
 
 namespace GoogleSecretManagerConfigurationProvider
 {
@@ -60,6 +61,8 @@ namespace GoogleSecretManagerConfigurationProvider
                 System.Console.WriteLine($"-->A");
                 var secrets = _client.ListSecrets(new ProjectName(_projectId));
                 System.Console.WriteLine($"-->{(secrets == null)}");
+                System.Console.WriteLine($"-->{(secrets.ToList().Count())}");
+
                 foreach (var secret in secrets)
             {
                 try
