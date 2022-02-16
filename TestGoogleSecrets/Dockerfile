@@ -16,8 +16,8 @@
 # RUN apk upgrade 
 # RUN apk add gcompat
 
-RUN apk update --no-cache
-RUn apk del libc6-compat
+# RUN apk update --no-cache
+# RUn apk del libc6-compat
 RUN apk add --no-cache bash libc6-compat=1.1.19-r11
 
 WORKDIR /app
