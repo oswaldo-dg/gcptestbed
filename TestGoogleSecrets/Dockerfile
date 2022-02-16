@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:3.1.22-alpine3.14 AS base
 RUN apk update 
 RUN apk upgrade 
 RUN apk add libc6-compat
+RUN apk add gcompat
 WORKDIR /app
 EXPOSE 6000
 EXPOSE 6001
