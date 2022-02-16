@@ -3,8 +3,8 @@ steps:
   # Webapp Consumer portal
   - name: "gcr.io/cloud-builders/docker"
     args:
-      ["build", "--no-cache", "-t", "gcr.io/testbed-341420/testbed:latest", "-f", "./TestGoogleSecrets/Dockerfile", "."]
+      ["build", "--no-cache", "-t", "gcr.io/testbed-341420/testbed:$SHORT_SHA", "-f", "./TestGoogleSecrets/Dockerfile", "."]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/testbed-341420/testbed:latest"]
+    args: ["push", "gcr.io/testbed-341420/testbed:$SHORT_SHA"]
   # [END Docker Image build]
 timeout: 1800s
