@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tabrasa-consumerportal-deployment
+  namespace: thm
+  labels:
+    app: testbed-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testbed-app
+  template:
+    metadata:
+      labels:
+        app: testbed-app
+    spec:
+      volumes:
+      - name: api-pod-configmap-volume
+        configMap:
+          name: api-pod-mapconfig
+      containers:        
+# ----------------------------------------------------------------------------
+#Consumer Portal Web App
+      - name: consumerportal-webapp
+        image: gcr.io/testbed-341420/testbed:latest
+        # resources:
+        #       requests:
+        #         memory: "2Mi"
+        #         cpu: "1m"
+        #       limits:
+        #         memory: "10Mi"
+        #         cpu: "10m"                
+        imagePullPolicy: Always 
+        volumeMounts:
+        - name: api-pod-configmap-volume
+          mountPath: /config      
+        ports:
+        - containerPort: 6000
+        - containerPort: 6001
+        env:
+        - name: GoogleConfiguration__JsonCredentialsPath
+          value: "/config/testbed-341420-4f13375d25f7.json"
+      
