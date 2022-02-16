@@ -1,5 +1,5 @@
 # FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-alpine3.8 AS BASE
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.22-alpine3.14 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:3.1.22-alpine3.14 AS base
 
 ENV ASPNETCORE_VERSION=3.1.0
 
