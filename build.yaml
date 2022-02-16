@@ -1,0 +1,10 @@
+steps:
+  # [START Docker Image build]
+  # Webapp Consumer portal
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      ["build", "--no-cache", "-t", "gcr.io/testbed-341420/testbed:latest", "-f", "./TestGoogleSecrets/Dockerfile", "."]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/testbed-341420/testbed:latest"]
+  # [END Docker Image build]
+timeout: 1800s
