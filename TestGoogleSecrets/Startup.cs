@@ -26,11 +26,19 @@ namespace TestGoogleSecrets
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            try
+            {
+                Byte[] bytes = Convert.FromBase64String(Configuration.GetSection("localhost-pfx").Value);
+                System.IO.File.WriteAllBytes("./localhost.pfx", bytes);
+                var cert = new X509Certificate2("./localhost.pfx", Configuration.GetSection("localhost-pass").Value);
+                
+            }
+            catch (Exception ex)
+            {
 
-            Byte[] bytes = Convert.FromBase64String(Configuration.GetSection("localhost-pfx").Value);
-            System.IO.File.WriteAllBytes("./localhost.pfx", bytes);
-            var cert = new X509Certificate2("./localhost.pfx", Configuration.GetSection("localhost-pass").Value);
-            Console.WriteLine("Saved");
+                Console.WriteLine($"Stayipt {ex}");
+            }
+            
 
             services.AddControllers();
         }

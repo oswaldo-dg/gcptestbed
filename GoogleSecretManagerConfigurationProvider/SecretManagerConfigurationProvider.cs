@@ -43,6 +43,11 @@ namespace GoogleSecretManagerConfigurationProvider
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "N/A")]
         public override void Load()
         {
+            try
+            {
+                System.Console.WriteLine($"-->Loading");
+
+
             System.Console.WriteLine($"-->{_projectId}");
             if(string.IsNullOrEmpty(_projectId))
             {
@@ -66,6 +71,13 @@ namespace GoogleSecretManagerConfigurationProvider
                     Console.WriteLine($">>> {gex}");
                     // Ignore. This might happen if secret is created but it has no versions available
                 }
+            }
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($">>> {ex}");
             }
         }
 
