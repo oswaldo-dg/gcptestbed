@@ -1,20 +1,23 @@
 # FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-alpine3.8 AS BASE
-FROM mcr.microsoft.com/dotnet/aspnet:3.1-alpine3.12 AS base
+# FROM mcr.microsoft.com/dotnet/aspnet:3.1-alpine3.12 AS base
 
-ENV ASPNETCORE_VERSION=3.1.0
+# ENV ASPNETCORE_VERSION=3.1.0
 
-RUN apk update 
-RUN apk add libc6-compat 
-RUN apk add bash 
-RUN rm -Rf /usr/share/dotnet 
-RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/3.1.0/aspnetcore-runtime-3.1.0-linux-musl-x64.tar.gz 
-RUN mkdir -p /usr/share/dotnet 
-RUN tar -zxf aspnetcore.tar.gz -C /usr/share/dotnet && rm aspnetcore.tar.gz 
-RUN ln -sf /usr/share/dotnet/dotnet /usr/bin/dotnet
+# RUN apk update 
+# RUN apk add libc6-compat 
+# RUN apk add bash 
+# RUN rm -Rf /usr/share/dotnet 
+# RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/3.1.0/aspnetcore-runtime-3.1.0-linux-musl-x64.tar.gz 
+# RUN mkdir -p /usr/share/dotnet 
+# RUN tar -zxf aspnetcore.tar.gz -C /usr/share/dotnet && rm aspnetcore.tar.gz 
+# RUN ln -sf /usr/share/dotnet/dotnet /usr/bin/dotnet
 
 # RUN apk update 
 # RUN apk upgrade 
 # RUN apk add gcompat
+
+RUN apk update --no-cache &&
+RUN apk add --no-cache bash libc6-compat=1.1.19-r11
 
 WORKDIR /app
 EXPOSE 6000
