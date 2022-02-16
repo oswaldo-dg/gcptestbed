@@ -8,9 +8,6 @@ EXPOSE 6001
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
-WORKDIR /src
 COPY ["TestGoogleSecrets/TestGoogleSecrets.csproj", "TestGoogleSecrets/"]
 RUN dotnet restore "TestGoogleSecrets/TestGoogleSecrets.csproj"
 COPY . .
