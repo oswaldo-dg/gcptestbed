@@ -1,7 +1,8 @@
-FROM mcr.microsoft.com/dotnet/aspnet:3.1.22-alpine3.14 AS base
-RUN apk update 
-RUN apk upgrade 
-RUN apk add gcompat
+#FROM mcr.microsoft.com/dotnet/aspnet:3.1.22-alpine3.14 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:3.1.22-buster-slim AS base
+# RUN apk update 
+# RUN apk upgrade 
+# RUN apk add gcompat
 
 WORKDIR /app
 EXPOSE 6000
