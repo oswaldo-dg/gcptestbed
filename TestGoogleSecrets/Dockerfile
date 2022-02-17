@@ -51,13 +51,13 @@ WORKDIR /src
 COPY ["TestGoogleSecrets/TestGoogleSecrets.csproj", "TestGoogleSecrets/"]
 RUN dotnet restore "TestGoogleSecrets/TestGoogleSecrets.csproj"
 COPY . .
-WORKDIR "/src/TestGoogleSecrets"
-RUN dotnet build "TestGoogleSecrets.csproj" -c Release -o /app/build
+# WORKDIR "/src/TestGoogleSecrets"
+# RUN dotnet build "TestGoogleSecrets.csproj" -c Release -o /app/build
 
-FROM build AS publish
-RUN dotnet publish "TestGoogleSecrets.csproj" -c Release -o /app/publish
+# FROM build AS publish
+# RUN dotnet publish "TestGoogleSecrets.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+# COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "TestGoogleSecrets.dll"]
