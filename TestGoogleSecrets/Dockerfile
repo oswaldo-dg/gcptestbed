@@ -10,9 +10,9 @@ RUN wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod
 RUN dpkg -i packages-microsoft-prod.deb
 RUN rm packages-microsoft-prod.deb
 
-RUN sudo apt-get install -y apt-transport-https
+RUN apt-get install -y apt-transport-https
 RUN apt-get update
-sudo apt-get install -y aspnetcore-runtime-3.1
+RUN apt-get install -y aspnetcore-runtime-3.1
 
 # # ENV ASPNETCORE_VERSION=3.1.22
 # RUN mkdir /usr/share/dotnet
