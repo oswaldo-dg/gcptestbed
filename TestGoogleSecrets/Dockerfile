@@ -5,7 +5,7 @@ FROM marketplace.gcr.io/google/debian11 AS base
 RUN apt-get install -y curl
 
 ENV ASPNETCORE_VERSION=3.1.22
-RUN curl -fSL --output aspnetcore.tar.gz https://dotnetcli.azureedge.net/dotnet/aspnetcore/Runtime/$aspnetcore_version/aspnetcore-runtime-$aspnetcore_version-linux-x64.tar.gz 
+RUN curl -fSL --output aspnetcore.tar.gz https://dotnetcli.azureedge.net/dotnet/aspnetcore/Runtime/$aspnetcore_version/aspnetcore-runtime-$ASPNETCORE_VERSION-linux-x64.tar.gz 
 RUN aspnetcore_sha512='32332a09a2f05e56ca66fff2a27e988dc35dc12dcc312b62c99c2a7b2532fb02bab0fa7f49f73938999488c0463a0c79c151b020e01104b8e9cfab80a877b5f3' 
 RUN echo "$aspnetcore_sha512  aspnetcore.tar.gz" | sha512sum -c - 
 RUN tar -oxzf aspnetcore.tar.gz -C /usr/share/dotnet ./shared/Microsoft.AspNetCore.App 
