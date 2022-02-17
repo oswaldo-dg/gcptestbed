@@ -14,22 +14,24 @@ namespace GoogleSecretManagerConfigurationProvider
         private GoogleConfiguration gc = new GoogleConfiguration();
         public SecretManagerConfigurationProvider()
         {
-            var remoteConfigurationOptions = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: false)
-                .AddEnvironmentVariables()
-                .Build();
+            //var remoteConfigurationOptions = new ConfigurationBuilder()
+            //    .AddJsonFile("appsettings.json", optional: false)
+            //    .AddEnvironmentVariables()
+            //    .Build();
 
-            remoteConfigurationOptions.Bind("GoogleConfiguration", gc);
+            //remoteConfigurationOptions.Bind("GoogleConfiguration", gc);
 
-            System.Console.WriteLine($"-->Starting {gc.JsonCredentialsPath}");
+            //System.Console.WriteLine($"-->Starting {gc.JsonCredentialsPath}");
 
-            System.Console.WriteLine($"-->{(System.IO.File.ReadAllText(gc.JsonCredentialsPath))}");
+            //System.Console.WriteLine($"-->{(System.IO.File.ReadAllText(gc.JsonCredentialsPath))}");
 
             try {
-                Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", gc.JsonCredentialsPath);
+                //Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", gc.JsonCredentialsPath);
                 _client = SecretManagerServiceClient.Create();
                 _projectId = GoogleProject.GetProjectId();
-                if(string.IsNullOrEmpty(_projectId)) _projectId = gc.ProjectId;
+                //if(string.IsNullOrEmpty(_projectId)) _projectId = gc.ProjectId;
+                Console.WriteLine($">>> {_projectId}");
+
             } catch (Exception ex) {
                 Console.WriteLine($"{ex}");
             }
