@@ -1,10 +1,18 @@
 # FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-alpine3.8 AS BASE
- FROM mcr.microsoft.com/dotnet/aspnet:3.1.9-alpine3.12 AS base
+ # FROM mcr.microsoft.com/dotnet/aspnet:3.1.9-alpine3.12 AS base
+FROM marketplace.gcr.io/google/debian11 AS base
+
+RUN aspnetcore_version=3.1.22 \
+    && curl -fSL --output aspnetcore.tar.gz https://dotnetcli.azureedge.net/dotnet/aspnetcore/Runtime/$aspnetcore_version/aspnetcore-runtime-$aspnetcore_version-linux-x64.tar.gz \
+    && aspnetcore_sha512='32332a09a2f05e56ca66fff2a27e988dc35dc12dcc312b62c99c2a7b2532fb02bab0fa7f49f73938999488c0463a0c79c151b020e01104b8e9cfab80a877b5f3' \
+    && echo "$aspnetcore_sha512  aspnetcore.tar.gz" | sha512sum -c - \
+    && tar -oxzf aspnetcore.tar.gz -C /usr/share/dotnet ./shared/Microsoft.AspNetCore.App \
+    && rm aspnetcore.tar.gz
 
 # ENV ASPNETCORE_VERSION=3.1.0
 
-RUN apk update 
-RUN apk add libc6-compat 
+# RUN apk update 
+# RUN apk add libc6-compat 
 # RUN apk add bash 
 # RUN rm -Rf /usr/share/dotnet 
 # RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/3.1.0/aspnetcore-runtime-3.1.0-linux-musl-x64.tar.gz 
