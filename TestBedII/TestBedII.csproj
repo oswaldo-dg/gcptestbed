@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GoogleSecretManagerConfigurationProvider\GoogleSecretManagerConfigurationProvider.csproj" />
+    <ProjectReference Include="..\GCPProvider\GCPProvider.csproj" />
   </ItemGroup>
 
 </Project>
