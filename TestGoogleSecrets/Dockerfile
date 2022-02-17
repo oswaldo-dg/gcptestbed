@@ -2,15 +2,25 @@
  # FROM mcr.microsoft.com/dotnet/aspnet:3.1.9-alpine3.12 AS base
 FROM marketplace.gcr.io/google/debian11 AS base
 
-RUN apt-get install -y curl
+RUN apt-get update
 
-# ENV ASPNETCORE_VERSION=3.1.22
-RUN mkdir /usr/share/dotnet
-RUN curl -fSL --output aspnetcore.tar.gz https://dotnetcli.azureedge.net/dotnet/aspnetcore/Runtime/3.1.22/aspnetcore-runtime-3.1.22-linux-x64.tar.gz 
-RUN aspnetcore_sha512='32332a09a2f05e56ca66fff2a27e988dc35dc12dcc312b62c99c2a7b2532fb02bab0fa7f49f73938999488c0463a0c79c151b020e01104b8e9cfab80a877b5f3' 
-# RUN echo "$aspnetcore_sha512  aspnetcore.tar.gz" | sha512sum -c - 
-RUN tar -oxzf aspnetcore.tar.gz -C /usr/share/dotnet ./shared/Microsoft.AspNetCore.App 
-RUN rm aspnetcore.tar.gz
+RUN apt-get install -y wget
+
+RUN wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb
+RUN rm packages-microsoft-prod.deb
+
+RUN sudo apt-get install -y apt-transport-https
+RUN apt-get update
+sudo apt-get install -y aspnetcore-runtime-3.1
+
+# # ENV ASPNETCORE_VERSION=3.1.22
+# RUN mkdir /usr/share/dotnet
+# RUN curl -fSL --output aspnetcore.tar.gz https://dotnetcli.azureedge.net/dotnet/aspnetcore/Runtime/3.1.22/aspnetcore-runtime-3.1.22-linux-x64.tar.gz 
+# RUN aspnetcore_sha512='32332a09a2f05e56ca66fff2a27e988dc35dc12dcc312b62c99c2a7b2532fb02bab0fa7f49f73938999488c0463a0c79c151b020e01104b8e9cfab80a877b5f3' 
+# # RUN echo "$aspnetcore_sha512  aspnetcore.tar.gz" | sha512sum -c - 
+# RUN tar -oxzf aspnetcore.tar.gz -C /usr/share/dotnet ./shared/Microsoft.AspNetCore.App 
+# RUN rm aspnetcore.tar.gz
 
 # ENV ASPNETCORE_VERSION=3.1.0
 
