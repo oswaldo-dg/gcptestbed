@@ -10,7 +10,7 @@ RUN dpkg -i packages-microsoft-prod.deb
 RUN rm packages-microsoft-prod.deb
 
 RUN apt-get install -y apt-transport-https
-# RUN apt-get update
+RUN apt-get update
 RUN apt-get install -y aspnetcore-runtime-3.1
 
 RUN apt-get -y --purge remove wget
