@@ -4,7 +4,7 @@ FROM marketplace.gcr.io/google/debian11 AS base
 
 RUN apt-get update
 
-RUN apt-get install -y wget
+# RUN apt-get install -y wget
 
 RUN wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
