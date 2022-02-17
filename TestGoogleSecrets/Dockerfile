@@ -2,18 +2,18 @@
  # FROM mcr.microsoft.com/dotnet/aspnet:3.1.9-alpine3.12 AS base
 FROM marketplace.gcr.io/google/debian11 AS base
 
-# RUN apt-get update
-# RUN apt-get install -y wget
+RUN apt-get update
+RUN apt-get install -y wget
 
-# RUN wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-# RUN dpkg -i packages-microsoft-prod.deb
-# RUN rm packages-microsoft-prod.deb
+RUN wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb
+RUN rm packages-microsoft-prod.deb
 
-# RUN apt-get install -y apt-transport-https
-# RUN apt-get update
-# RUN apt-get install -y aspnetcore-runtime-3.1
+RUN apt-get install -y apt-transport-https
+RUN apt-get update
+RUN apt-get install -y aspnetcore-runtime-3.1
 
-# RUN apt-get -y --purge remove wget
+RUN apt-get -y --purge remove wget
 
 # # ENV ASPNETCORE_VERSION=3.1.22
 # RUN mkdir /usr/share/dotnet
