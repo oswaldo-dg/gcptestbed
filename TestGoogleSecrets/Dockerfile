@@ -2,7 +2,7 @@
  # FROM mcr.microsoft.com/dotnet/aspnet:3.1.9-alpine3.12 AS base
 FROM marketplace.gcr.io/google/debian11 AS base
 
-RUN apt-get install curl
+RUN apt-get install -y curl
 
 ENV ASPNETCORE_VERSION=3.1.22
 RUN curl -fSL --output aspnetcore.tar.gz https://dotnetcli.azureedge.net/dotnet/aspnetcore/Runtime/$aspnetcore_version/aspnetcore-runtime-$aspnetcore_version-linux-x64.tar.gz 
