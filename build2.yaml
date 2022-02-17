@@ -1,0 +1,11 @@
+steps:
+  # [START Docker Image build]
+  # Webapp Consumer portal
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      ["build", "--no-cache", "-t", "gcr.io/testbed-341420/testbed2:$SHORT_SHA", "-f", "./TestBedII/Dockerfile", "."]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/testbed-341420/testbed2:$SHORT_SHA"]
+  # [END Docker Image build]
+timeout: 1800s
+
