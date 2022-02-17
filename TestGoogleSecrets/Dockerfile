@@ -3,8 +3,8 @@
 
 # ENV ASPNETCORE_VERSION=3.1.0
 
-# RUN apk update 
-# RUN apk add libc6-compat 
+RUN apk update 
+RUN apk add libc6-compat 
 # RUN apk add bash 
 # RUN rm -Rf /usr/share/dotnet 
 # RUN wget -O aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/dotnet/aspnetcore/Runtime/3.1.0/aspnetcore-runtime-3.1.0-linux-musl-x64.tar.gz 
