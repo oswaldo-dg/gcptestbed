@@ -20,10 +20,11 @@ namespace TestGoogleSecrets
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((_, config) => config.AddGoogleSecretsManager())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        // .ConfigureAppConfiguration((_, config) => config.AddGoogleSecretsManager())
     }
 }
